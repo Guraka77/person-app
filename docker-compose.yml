@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: hguraka
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3307:3306"  # Change the host port to 3307
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  springboot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/hguraka
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: rootpassword
+
+  react:
+    build:
+      context: ./person-app
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+
+volumes:
+  mysql-data:

@@ -1,0 +1,20 @@
+body {
+  background-color: #f8f9fa;
+}
+
+.container {
+  margin-top: 20px;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+.ml-2 {
+  margin-left: 10px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
